@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="action_act2">Activity 2</string>
+    <string name="action_act3">Activity 3</string>
+    <string name="action_other">Toast</string>
+    <string name="action_exit">Exit</string>
+    <string name="activity2_textView">act 2</string>
+    <string name="title_activity_3">Activity 3</string>
+    <string name="act3_textView">ACT 3 TCA</string>
+    <string name="title_activity_other">Other Activity</string>
+    <string name="bottomTextView">Bottom Section TextView</string>
+    <string name="firstTopTexView">firstTop</string>
+    <string name="secondtTopTexView">secondtTop</string>
+    <string name="topSectionButton">click me</string>
+</resources>

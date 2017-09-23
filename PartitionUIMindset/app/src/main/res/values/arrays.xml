@@ -1,0 +1,23 @@
+<resources>
+    <!-- Course Titles -->
+    <string-array name="course_titles">
+        <item>@string/android_fragments_title</item>
+        <item>@string/android_intents_title</item>
+        <item>@string/android_action_bar_title</item>
+        <item>@string/android_photo_video_title</item>
+        <item>@string/android_4_features_title</item>
+        <item>@string/android_location_apps_title</item>
+        <item>@string/android_async_services_title</item>
+    </string-array>
+
+    <!-- Course Descriptions -->
+    <string-array name="course_descriptions">
+        <item>@string/android_fragments_description</item>
+        <item>@string/android_intents_description</item>
+        <item>@string/android_action_bar_description</item>
+        <item>@string/android_photo_video_description</item>
+        <item>@string/android_4_features_description</item>
+        <item>@string/android_location_apps_description</item>
+        <item>@string/android_async_services_description</item>
+    </string-array>
+</resources>
