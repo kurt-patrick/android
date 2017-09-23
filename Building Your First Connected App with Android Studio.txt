@@ -1,0 +1,10 @@
+### Building Your First Connected App with Android Studio
+
+https://www.googleapis.com/books/v1/volumes/?q=android%20programming
+
+console.developers.google.com/apis/
+
+
+https://www.googleapis.com/books/v1/volumes?q=cooking&key=AIzaSyApzrJIZdXmUnG_huKgsvewzmbOxMvBliM
+
+C:\Users\LocalUser\.android\avd
