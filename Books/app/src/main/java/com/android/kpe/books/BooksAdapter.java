@@ -15,7 +15,8 @@ import java.util.ArrayList;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHolder> {
 
-    ArrayList<Book> mBooks = null;
+    private ArrayList<Book> mBooks = null;
+
     public BooksAdapter(ArrayList<Book> books) {
         this.mBooks = books;
     }
@@ -68,27 +69,6 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             mAuthors.setText(sb.toString());
 
         }
-
-        /*
-        TextView getTitle() {
-            if(mTitle == null) {
-                mTitle = (TextView)
-            }
-            return mTitle;
-        }
-
-        TextView getAuthors() {
-
-        }
-
-        TextView getDate() {
-
-        }
-
-        TextView getPublisher() {
-
-        }
-        */
 
     }
 
