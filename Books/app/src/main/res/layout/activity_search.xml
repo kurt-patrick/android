@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.kpe.books.SearchActivity">
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/insert_title"
+        android:layout_margin="@dimen/twenty_four_dp" />
+
+    <TextView
+        android:id="@+id/txtAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/insert_author"
+        android:layout_margin="@dimen/twenty_four_dp" />
+
+    <TextView
+        android:id="@+id/txtPublisher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/insert_publisher"
+        android:layout_margin="@dimen/twenty_four_dp" />
+
+    <TextView
+        android:id="@+id/txtISBN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/insert_isbn"
+        android:layout_margin="@dimen/twenty_four_dp" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:textSize="@dimen/eighteen_sp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/twenty_four_dp"
+        android:background="@drawable/search_button_shape" />
+
+</LinearLayout>

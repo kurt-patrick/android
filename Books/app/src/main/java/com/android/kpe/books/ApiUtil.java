@@ -79,6 +79,9 @@ public class ApiUtil {
         final String PUBLISHED_DATE = "publishedDate";
         final String ITEMS = "items";
         final String VOLUME_INFO = "volumeInfo";
+        final String DESCRIPTION = "description";
+        final String IMAGE_LINKS = "imageLinks";
+        final String THUMBNAIL = "thumbnail";
 
         ArrayList<Book> retVal = new ArrayList<Book>();
 
@@ -92,6 +95,7 @@ public class ApiUtil {
 
                 JSONObject bookJsonObject = jsonArray.getJSONObject(index);
                 JSONObject volumeInfoObject = bookJsonObject.getJSONObject(VOLUME_INFO);
+                JSONObject imageLinksJSON = volumeInfoObject.getJSONObject(IMAGE_LINKS);
 
                 int authorCount = volumeInfoObject.getJSONArray(AUTHORS).length();
                 String[] authors = new String[authorCount];
@@ -105,7 +109,9 @@ public class ApiUtil {
                         volumeInfoObject.isNull(SUBTITLE) ? "" : volumeInfoObject.getString(SUBTITLE),
                         authors,
                         volumeInfoObject.getString(PUBLISHER),
-                        volumeInfoObject.getString(PUBLISHED_DATE)
+                        volumeInfoObject.getString(PUBLISHED_DATE),
+                        volumeInfoObject.getString(DESCRIPTION),
+                        imageLinksJSON.getString(THUMBNAIL)
                 );
 
                 retVal.add(book);

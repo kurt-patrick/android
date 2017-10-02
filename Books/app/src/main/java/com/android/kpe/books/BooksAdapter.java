@@ -58,16 +58,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BookViewHold
             mTitle.setText(book.title);
             mPublishedDate.setText(book.publishedDate);
             mPublisher.setText(book.publisher);
-
-            StringBuilder sb = new StringBuilder();
-            for(int index=0; index < book.authors.length; index++) {
-                sb.append(book.authors[index]);
-                if(index < book.authors.length -1) {
-                    sb.append(", ");
-                }
-            }
-            mAuthors.setText(sb.toString());
-
+            mAuthors.setText(book.authors);
         }
 
     }
