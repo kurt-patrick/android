@@ -24,6 +24,10 @@ public class ApiUtil {
     private static final String QUERY_PARAM_Q = "q";
     private static final String QUERY_PARAM_KEY = "key";
     private static final String API_KEY = "AIzaSyApzrJIZdXmUnG_huKgsvewzmbOxMvBliM";
+    private static final String TITLE = "intitle:";
+    private static final String AUTHOR = "inauthor:";
+    private static final String PUBLISHER = "inpublisher:";
+    private static final String ISBN = "isbn:";
 
     private ApiUtil() {}
 
@@ -36,7 +40,7 @@ public class ApiUtil {
         /*
                 .appendQueryParameter(QUERY_PARAM_KEY, API_KEY)
                 .build();
-*/
+        */
         try {
             url = new URL(uri.toString());
         }
@@ -46,6 +50,32 @@ public class ApiUtil {
 
         return url;
     }
+
+    public static URL buildUrl(String title, String author, String publisher, String isbn) {
+        URL url = null;
+        StringBuilder sb = new StringBuilder();
+        if(!title.isEmpty()) sb.append(TITLE + title + "+");
+        if(!author.isEmpty()) sb.append(AUTHOR + author + "+");
+        if(!publisher.isEmpty()) sb.append(PUBLISHER + publisher + "+");
+        if(!isbn.isEmpty()) sb.append(ISBN + isbn + "+");
+
+        // very important to remove the "+" from the end
+        sb.setLength(sb.length() -1);
+
+        Uri uri = Uri.parse(BASE_API_URL).buildUpon()
+                .appendQueryParameter(QUERY_PARAM_Q, sb.toString())
+                .build();
+
+        try {
+            url = new URL(uri.toString());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
+
 
     public static String getJson(URL url) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -87,9 +117,8 @@ public class ApiUtil {
 
         try {
             JSONObject jsonObject = new JSONObject(json);
-            JSONArray jsonArray = jsonObject.getJSONArray(ITEMS);
-
-            int itemCount = jsonArray.length();
+            JSONArray jsonArray = (jsonObject.has(ITEMS)) ? jsonObject.getJSONArray(ITEMS) : null;
+            int itemCount = (jsonArray == null) ? 0 : jsonArray.length();
 
             for(int index = 0; index < itemCount; index++) {
 
@@ -97,10 +126,17 @@ public class ApiUtil {
                 JSONObject volumeInfoObject = bookJsonObject.getJSONObject(VOLUME_INFO);
                 JSONObject imageLinksJSON = volumeInfoObject.getJSONObject(IMAGE_LINKS);
 
-                int authorCount = volumeInfoObject.getJSONArray(AUTHORS).length();
-                String[] authors = new String[authorCount];
-                for(int authorIndex = 0; authorIndex < authorCount; authorIndex++) {
-                    authors[authorIndex] = volumeInfoObject.getJSONArray(AUTHORS).get(authorIndex).toString();
+                String[] authors = null;
+                if(volumeInfoObject.has(AUTHORS))
+                {
+                    JSONArray authorsArray = volumeInfoObject.getJSONArray(AUTHORS);
+                    int authorCount = authorsArray.length();
+                    if(authorCount > 0) {
+                        authors = new String[authorCount];
+                        for(int authorIndex = 0; authorIndex < authorCount; authorIndex++) {
+                            authors[authorIndex] = volumeInfoObject.getJSONArray(AUTHORS).get(authorIndex).toString();
+                        }
+                    }
                 }
 
                 Book book = new Book(

@@ -27,7 +27,7 @@ public class Book implements Parcelable {
         this.id = id;
         this.title = title;
         this.subTitle = subTitle;
-        this.authors = TextUtils.join(", ", authors);
+        this.authors = (authors == null) ? "" : TextUtils.join(", ", authors);
         this.publisher = publisher;
         this.publishedDate = publishedDate;
         this.description = description;
@@ -76,10 +76,14 @@ public class Book implements Parcelable {
 
     @BindingAdapter({"android:imageUrl"})
     public static void loadImage(ImageView imageView, String imageUrl) {
-        Picasso.with(imageView.getContext())
-                .load(imageUrl)
-                .placeholder(R.drawable.book_open)
-                .into(imageView);
+        if(imageUrl != null && imageUrl.trim().length() > 0) {
+            Picasso.with(imageView.getContext())
+                    .load(imageUrl)
+                    .placeholder(R.drawable.book_open)
+                    .into(imageView);
+        } else {
+            imageView.setBackgroundResource(R.drawable.book_open);
+        }
 
     }
 }

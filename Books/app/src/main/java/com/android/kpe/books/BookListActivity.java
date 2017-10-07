@@ -36,9 +36,20 @@ public class BookListActivity extends AppCompatActivity implements SearchView.On
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         getBooksRecyclerView().setLayoutManager(layoutManager);
 
+        Intent intent = getIntent();
+        String query = intent.getStringExtra("query");
+
         try {
-            URL bookUrl = ApiUtil.buildUrl("cooking");
+
+            URL bookUrl = null;
+            if(query == null || query.trim().length() == 0) {
+                bookUrl = ApiUtil.buildUrl("cooking");
+            } else {
+                bookUrl = new URL(query);
+            }
+
             new BooksAsyncTask().execute(bookUrl);
+
         }
         catch (Exception e) {
             Log.d("error", e.getMessage());
@@ -51,6 +62,15 @@ public class BookListActivity extends AppCompatActivity implements SearchView.On
         final MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
+
+        // Dynamic menu items
+        MenuItem menuItem = null;
+        ArrayList<String>  queries = SpUtil.getQueryList(getApplicationContext());
+
+        for(int index=0; index<queries.size(); index++) {
+            menuItem = menu.add(Menu.NONE, index, Menu.NONE, queries.get(index));
+        }
+
         return true;
     }
 
@@ -62,6 +82,12 @@ public class BookListActivity extends AppCompatActivity implements SearchView.On
                 startActivity(intent);
                 return true;
             default:
+
+                int position = item.getItemId() + 1;
+                String query = SpUtil.getQuery(getApplicationContext(), position);
+                URL searchUrl = ApiUtil.buildUrl(query);
+                new BooksAsyncTask().execute(searchUrl);
+
                 return super.onOptionsItemSelected(item);
         }
     }

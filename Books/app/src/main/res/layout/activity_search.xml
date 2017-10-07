@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.android.kpe.books.SearchActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/txtTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:hint="@string/insert_title"
         android:layout_margin="@dimen/twenty_four_dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/txtAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:hint="@string/insert_author"
         android:layout_margin="@dimen/twenty_four_dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/txtPublisher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:hint="@string/insert_publisher"
         android:layout_margin="@dimen/twenty_four_dp" />
 
-    <TextView
+    <EditText
         android:id="@+id/txtISBN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
