@@ -88,6 +88,7 @@ public class PinCodeFragment extends Fragment implements View.OnClickListener {
 
     private void setActualPin() {
         String actual = (mActualPin == null) ? "" : mActualPin;
+        //
 
         String text = null;
         if(actual.length() == 0) {
