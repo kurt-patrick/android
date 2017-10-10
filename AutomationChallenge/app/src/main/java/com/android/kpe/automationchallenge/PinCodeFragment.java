@@ -3,6 +3,7 @@ package com.android.kpe.automationchallenge;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,20 @@ public class PinCodeFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         setExpectedPin();
         setActualPin();
+        getBtnRestart();
+        addEventHandlers();
+    }
+
+    private void addEventHandlers() {
+        getActivity().findViewById(R.id.button1).setOnClickListener(this);
+        getActivity().findViewById(R.id.button2).setOnClickListener(this);
+        getActivity().findViewById(R.id.button3).setOnClickListener(this);
+        getActivity().findViewById(R.id.button4).setOnClickListener(this);
+        getActivity().findViewById(R.id.button5).setOnClickListener(this);
+        getActivity().findViewById(R.id.button6).setOnClickListener(this);
+        getActivity().findViewById(R.id.button7).setOnClickListener(this);
+        getActivity().findViewById(R.id.button8).setOnClickListener(this);
+        getActivity().findViewById(R.id.button9).setOnClickListener(this);
     }
 
     @Override
@@ -44,6 +59,15 @@ public class PinCodeFragment extends Fragment implements View.OnClickListener {
     private Button getBtnRestart() {
         if(mBtnRestart == null) {
             mBtnRestart = (Button) getActivity().findViewById(R.id.btnRestart);
+            mBtnRestart.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mActualPin = "";
+                    mExpectedPin = "";
+                    setActualPin();
+                    setExpectedPin();
+                }
+            });
         }
         return mBtnRestart;
     }
@@ -57,7 +81,6 @@ public class PinCodeFragment extends Fragment implements View.OnClickListener {
 
     private TextView getTxtExpectedPin() {
         if(mTxtExpectedPin == null) {
-            View view = getView();
             mTxtExpectedPin = (TextView) getView().findViewById(R.id.txtPin);
         }
         return mTxtExpectedPin;
@@ -65,30 +88,61 @@ public class PinCodeFragment extends Fragment implements View.OnClickListener {
 
     private void setActualPin() {
         String actual = (mActualPin == null) ? "" : mActualPin;
-        getTxtActualPin().setText(getResources().getString(R.string.pin_entered) + " " + actual);
+
+        String text = null;
+        if(actual.length() == 0) {
+            text = "Click to enter the pin";
+        } else if(actual.equals(mExpectedPin)) {
+            text = "Success";
+        } else if(mExpectedPin.startsWith(actual)){
+            text = getResources().getString(R.string.pin_entered) + " " + actual;
+        } else {
+            text = "Fail";
+        }
+        getTxtActualPin().setText(text);
+
     }
 
     private void setExpectedPin() {
-
         if(mExpectedPin == null || mExpectedPin.isEmpty()) {
-            Random random = new Random(1000);
-            int pin = random.nextInt();
-            mExpectedPin = String.valueOf(pin);
+            mExpectedPin = String.valueOf(getRandomInt(101, 99999)).replace("0", "");
         }
-
         getTxtExpectedPin().setText(getResources().getString(R.string.enter_pin) + " " + String.valueOf(mExpectedPin));
+    }
 
+    private int getRandomInt(int min, int max) {
+        return new Random().nextInt(max + 1 - min) + min;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId())
         {
+            case R.id.button1:
+            case R.id.button2:
+            case R.id.button3:
+            case R.id.button4:
+            case R.id.button5:
+            case R.id.button6:
+            case R.id.button7:
+            case R.id.button8:
+            case R.id.button9:
+                String text = ((Button) getView().findViewById(v.getId())).getText().toString();
+                pinCodeClicked(text);
+                break;
             case R.id.btnRestart:
                 break;
             default:
                 break;
         }
+    }
 
+    private void pinCodeClicked(String value) {
+        if(mActualPin == null) {
+            mActualPin = value;
+        } else {
+            mActualPin += value;
+        }
+        setActualPin();
     }
 }
