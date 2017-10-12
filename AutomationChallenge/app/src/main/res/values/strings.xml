@@ -13,4 +13,6 @@
     <string name="restart">Restart</string>
     <string name="enter_pin">Enter PIN:</string>
     <string name="pin_entered">PIN entered:</string>
+    <string name="results_list">Results list</string>
+    <string name="title_activity_results_list">ResultsListActivity</string>
 </resources>
