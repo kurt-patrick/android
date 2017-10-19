@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity
             setFragment(new PinCodeFragment());
 
         } else if (id == R.id.nav_gallery) {
+            setFragment(new ResultsListFragment());
 
         } else if (id == R.id.nav_slideshow) {
 
