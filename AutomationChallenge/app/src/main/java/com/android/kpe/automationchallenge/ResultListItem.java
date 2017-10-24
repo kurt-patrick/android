@@ -14,7 +14,7 @@ public class ResultListItem {
     public String four;
 
     private ResultListItem() {
-        this.one = getRandom(11, 13);
+        this.one = getRandom(11, 12);
         this.two = getRandom(24, 25);
         this.three = getRandom(36, 38);
         this.four = getRandom(49, 51);

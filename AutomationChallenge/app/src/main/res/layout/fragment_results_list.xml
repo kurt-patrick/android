@@ -19,7 +19,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/txtNumbers"
+        android:id="@+id/txtExpected"
         android:paddingTop="@dimen/eight_dp"
         android:text="A B C D"
         android:textAlignment="center"
@@ -37,10 +37,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNumbers" />
+        app:layout_constraintTop_toBottomOf="@+id/txtExpected" />
 
     <TextView
-        android:id="@+id/txtResult"
+        android:id="@+id/txtActual"
         android:paddingTop="@dimen/thirty_two_dp"
         android:text="0 rows clicked"
         android:textAlignment="center"

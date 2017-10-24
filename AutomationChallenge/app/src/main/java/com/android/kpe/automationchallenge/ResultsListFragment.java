@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.io.InvalidObjectException;
 import java.util.ArrayList;
@@ -18,9 +19,11 @@ import java.util.ArrayList;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class ResultsListFragment extends Fragment {
+public class ResultsListFragment extends Fragment implements  OnResultsListItemClickListener {
 
     private RecyclerView mRecyclerView = null;
+    private TextView mTxtExpected = null;
+    private TextView mTxtActual = null;
     private ArrayList<Integer> mExpectedIndexes = new ArrayList<Integer>();
     private ArrayList<Integer> mClickedIndexes = new ArrayList<Integer>();
 
@@ -61,7 +64,12 @@ public class ResultsListFragment extends Fragment {
             throw new IllegalArgumentException("Expected indexes must contain at least one int");
         }
 
-        ResultsListAdapter adapter = new ResultsListAdapter(items);
+        // set expected string
+        ResultListItem item = items.get(randomIndex);
+        getTxtExpected().setText(item.one + " " + item.two + " " + item.three + " " + item.four);
+        setActualMessage("0 rows clicked");
+
+        ResultsListAdapter adapter = new ResultsListAdapter(this, items);
         getRecyclerView().setAdapter(adapter);
         getRecyclerView().setHasFixedSize(true);
 
@@ -79,4 +87,54 @@ public class ResultsListFragment extends Fragment {
         return mRecyclerView;
     }
 
+    private TextView getTxtExpected() {
+        if(mTxtExpected == null) {
+            mTxtExpected = ((TextView) getView().findViewById(R.id.txtExpected));
+        }
+        return mTxtExpected;
+    }
+
+    private void setActualMessage(String text) {
+        TextView textView = getTxtActual();
+        textView.setText(text);
+    }
+
+    private boolean isSuccess() {
+        boolean success = false;
+        if(mClickedIndexes.size() == mExpectedIndexes.size()) {
+            for(int index=0; index<mExpectedIndexes.size(); index++) {
+                success = mClickedIndexes.contains(mExpectedIndexes.get(index));
+                if(!success) {
+                    break;
+                }
+            }
+        }
+        return success;
+    }
+
+    private TextView getTxtActual() {
+        if(mTxtActual == null) {
+            mTxtActual = ((TextView) getView().findViewById(R.id.txtActual));
+        }
+        return mTxtActual;
+    }
+
+    @Override
+    public void onRowClick(int index, ResultsListAdapter.ListItemViewHolder listItem) {
+        if(!mClickedIndexes.contains(index)) {
+            mClickedIndexes.add(index);
+            boolean isValid = mExpectedIndexes.contains(index);
+            listItem.setColor(isValid);
+            if(isValid) {
+                if(isSuccess()) {
+                    setActualMessage("Success");
+                } else {
+                    setActualMessage(mClickedIndexes.size() + " of " + mExpectedIndexes + " rows clicked");
+                }
+            } else {
+                setActualMessage("Fail");
+            }
+
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package com.android.kpe.automationchallenge;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,15 +17,18 @@ import java.util.ArrayList;
 public class ResultsListAdapter extends RecyclerView.Adapter<ResultsListAdapter.ListItemViewHolder> {
 
     private ArrayList<ResultListItem> mItems = null;
-    public ResultsListAdapter(ArrayList<ResultListItem> items) {
+    private ResultsListFragment mParentFragment = null;
+
+    public ResultsListAdapter(ResultsListFragment parent, ArrayList<ResultListItem> items) {
         mItems = items;
+        mParentFragment = parent;
     }
 
     @Override
     public ListItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         View itemView = LayoutInflater.from(context).inflate(R.layout.results_list_item, parent, false);
-        return new ListItemViewHolder(itemView);
+        return new ListItemViewHolder(mParentFragment, itemView);
     }
 
     @Override
@@ -39,8 +43,14 @@ public class ResultsListAdapter extends RecyclerView.Adapter<ResultsListAdapter.
 
     public class ListItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public ListItemViewHolder(View itemView) {
+        private ResultsListFragment mParent;
+
+        public ListItemViewHolder(ResultsListFragment parent, View itemView) {
             super(itemView);
+            mParent = parent;
+            if(mParent == null) {
+                throw new NullPointerException("parent cannot be null");
+            }
             itemView.setOnClickListener(this);
         }
 
@@ -61,8 +71,22 @@ public class ResultsListAdapter extends RecyclerView.Adapter<ResultsListAdapter.
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
-            ResultListItem selectedBook = mItems.get(position);
+            ResultListItem selectedItem = mItems.get(position);
+            mParent.onRowClick(position, this);
         }
+
+        public void setColor(boolean isCorrect) {
+            if(isCorrect) {
+                itemView.setBackgroundColor(Color.GREEN);
+            } else {
+                itemView.setBackgroundColor(Color.RED);
+            }
+        }
+
+        public void resetColor() {
+            itemView.setBackgroundColor(Color.GREEN);
+        }
+
     }
 
 }
