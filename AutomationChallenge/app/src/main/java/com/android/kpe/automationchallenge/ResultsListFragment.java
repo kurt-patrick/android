@@ -1,5 +1,6 @@
 package com.android.kpe.automationchallenge;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
@@ -13,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.io.InvalidObjectException;
 import java.util.ArrayList;
 
 /**
@@ -28,6 +28,11 @@ public class ResultsListFragment extends Fragment implements  OnResultsListItemC
     private ArrayList<Integer> mClickedIndexes = new ArrayList<Integer>();
 
     public ResultsListFragment() {
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
     @Override
@@ -99,17 +104,24 @@ public class ResultsListFragment extends Fragment implements  OnResultsListItemC
         textView.setText(text);
     }
 
-    private boolean isSuccess() {
-        boolean success = false;
-        if(mClickedIndexes.size() == mExpectedIndexes.size()) {
-            for(int index=0; index<mExpectedIndexes.size(); index++) {
-                success = mClickedIndexes.contains(mExpectedIndexes.get(index));
-                if(!success) {
-                    break;
-                }
-            }
+    private int getInvalidClickCount() {
+        int retVal = 0;
+        for(int index=0; index<mClickedIndexes.size(); index++) {
+            if (!mExpectedIndexes.contains(mClickedIndexes.get(index))) {
+                retVal += 1;
+            };
         }
-        return success;
+        return retVal;
+    }
+
+    private int getValidClickCount() {
+        int retVal = 0;
+        for(int index=0; index<mExpectedIndexes.size(); index++) {
+            if (mClickedIndexes.contains(mExpectedIndexes.get(index))) {
+                retVal += 1;
+            };
+        }
+        return retVal;
     }
 
     private TextView getTxtActual() {
@@ -122,17 +134,28 @@ public class ResultsListFragment extends Fragment implements  OnResultsListItemC
     @Override
     public void onRowClick(int index, ResultsListAdapter.ListItemViewHolder listItem) {
         if(!mClickedIndexes.contains(index)) {
+
+            // keep track of clicked indexes
             mClickedIndexes.add(index);
-            boolean isValid = mExpectedIndexes.contains(index);
-            listItem.setColor(isValid);
-            if(isValid) {
-                if(isSuccess()) {
+
+            // determine if this is a row that should be clicked
+            boolean isValidIndex = mExpectedIndexes.contains(index);
+
+            // set the rows colour to red or green
+            listItem.setColor(isValidIndex);
+
+            //  && mClickedIndexes.size() <= mExpectedIndexes.size()
+            int validClickCount = getValidClickCount();
+            int invalidClickCount = getInvalidClickCount();
+
+            if(invalidClickCount > 0) {
+                setActualMessage("Fail");
+            } else {
+                if(validClickCount == mExpectedIndexes.size()) {
                     setActualMessage("Success");
                 } else {
-                    setActualMessage(mClickedIndexes.size() + " of " + mExpectedIndexes + " rows clicked");
+                    setActualMessage(mClickedIndexes.size() + " of " + mExpectedIndexes.size() + " rows clicked");
                 }
-            } else {
-                setActualMessage("Fail");
             }
 
         }
