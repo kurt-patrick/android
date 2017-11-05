@@ -31,11 +31,6 @@ public class ResultsListFragment extends Fragment implements  OnResultsListItemC
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_results_list, container, false);
