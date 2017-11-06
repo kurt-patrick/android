@@ -93,11 +93,11 @@ public class PinCodeFragment extends Fragment implements View.OnClickListener {
         if(actual.length() == 0) {
             text = "Click to enter the pin";
         } else if(actual.equals(mExpectedPin)) {
-            text = "Success";
+            text = getString(R.string.success);
         } else if(mExpectedPin.startsWith(actual)){
             text = getResources().getString(R.string.pin_entered) + " " + actual;
         } else {
-            text = "Fail";
+            text = getString(R.string.fail);
         }
         getTxtActualPin().setText(text);
 

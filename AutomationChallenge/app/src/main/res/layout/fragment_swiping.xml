@@ -13,7 +13,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
@@ -34,7 +34,7 @@
     <TextView
         android:id="@+id/txtActual"
         android:paddingTop="@dimen/thirty_two_dp"
-        android:text="Status: Pending swipe"
+        android:text="0 rows swiped"
         android:textAlignment="center"
         android:textSize="@dimen/result_list_item"
         android:layout_width="0dp"

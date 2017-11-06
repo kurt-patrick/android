@@ -144,10 +144,10 @@ public class ResultsListFragment extends Fragment implements  OnResultsListItemC
             int invalidClickCount = getInvalidClickCount();
 
             if(invalidClickCount > 0) {
-                setActualMessage("Fail");
+                setActualMessage(getString(R.string.fail));
             } else {
                 if(validClickCount == mExpectedIndexes.size()) {
-                    setActualMessage("Success");
+                    setActualMessage(getString(R.string.success));
                 } else {
                     setActualMessage(mClickedIndexes.size() + " of " + mExpectedIndexes.size() + " rows clicked");
                 }

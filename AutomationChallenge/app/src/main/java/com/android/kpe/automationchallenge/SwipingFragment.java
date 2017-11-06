@@ -15,6 +15,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -78,8 +79,14 @@ public class SwipingFragment extends Fragment implements RecyclerItemTouchHelper
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (viewHolder instanceof SwipingAdapter.MyViewHolder) {
+
             // remove the item from recycler view
             mAdapter.removeItem(viewHolder.getAdapterPosition());
+
+            // update the status to success
+            TextView txtStatus = (TextView) getView().findViewById(R.id.txtActual);
+            txtStatus.setText(getString(R.string.success));
+
         }
     }
 }

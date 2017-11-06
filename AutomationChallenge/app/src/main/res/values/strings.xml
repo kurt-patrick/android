@@ -16,4 +16,6 @@
     <string name="results_list">Results list</string>
     <string name="title_activity_results_list">ResultsListActivity</string>
     <string name="delete">DELETE</string>
+    <string name="success">Success</string>
+    <string name="fail">Fail</string>
 </resources>
