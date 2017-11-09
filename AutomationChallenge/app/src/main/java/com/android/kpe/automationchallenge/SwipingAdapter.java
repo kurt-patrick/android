@@ -23,10 +23,11 @@ public class SwipingAdapter extends RecyclerView.Adapter<SwipingAdapter.MyViewHo
     private Context mContext = null;
 
     public SwipingAdapter() {
+        final String SWIPE_LEFT = "swipe_to_delete";
         mItems = new ArrayList<String>();
-        mItems.add("swipe left to delete");
-        mItems.add("swipe left to delete");
-        mItems.add("swipe left to delete");
+        mItems.add(SWIPE_LEFT);
+        mItems.add(SWIPE_LEFT);
+        mItems.add(SWIPE_LEFT);
     }
 
     @Override

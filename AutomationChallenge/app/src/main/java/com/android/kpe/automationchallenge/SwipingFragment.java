@@ -85,7 +85,19 @@ public class SwipingFragment extends Fragment implements RecyclerItemTouchHelper
 
             // update the status to success
             TextView txtStatus = (TextView) getView().findViewById(R.id.txtActual);
-            txtStatus.setText(getString(R.string.success));
+
+            int count = mAdapter.getItemCount();
+            switch (count)
+            {
+                case 3:
+                case 2:
+                case 1:
+                    txtStatus.setText((3-count) + " of 3 rows swiped");
+                    break;
+                case 0:
+                    txtStatus.setText(getString(R.string.success));
+
+            }
 
         }
     }
