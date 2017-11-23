@@ -15,6 +15,10 @@
             android:id="@+id/swipe_challenge"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Swipe to delete" />
+        <item
+            android:id="@+id/alert_dialog"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Alert dialog" />
     </group>
 
 </menu>
