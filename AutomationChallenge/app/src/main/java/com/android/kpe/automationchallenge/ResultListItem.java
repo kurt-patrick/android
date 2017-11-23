@@ -16,7 +16,7 @@ public class ResultListItem {
     private ResultListItem() {
         this.one = getRandom(11, 12);
         this.two = getRandom(24, 25);
-        this.three = getRandom(36, 38);
+        this.three = getRandom(36, 37);
         this.four = getRandom(49, 50);
     }
 

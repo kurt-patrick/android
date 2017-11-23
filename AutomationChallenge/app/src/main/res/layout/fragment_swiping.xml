@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/txtInstructions"
-        android:text="Click then swipe left to delete a row"
+        android:text="Swipe left to delete a row"
         android:textAlignment="center"
         android:textSize="@dimen/result_list_item"
         app:layout_constraintLeft_toLeftOf="parent"

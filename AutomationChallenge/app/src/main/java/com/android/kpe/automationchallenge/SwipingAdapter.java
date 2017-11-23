@@ -19,15 +19,11 @@ import java.util.ArrayList;
 
 public class SwipingAdapter extends RecyclerView.Adapter<SwipingAdapter.MyViewHolder> {
 
-    private ArrayList<String> mItems = null;
+    private Integer mRowCount = 0;
     private Context mContext = null;
 
     public SwipingAdapter() {
-        final String SWIPE_LEFT = "swipe_to_delete";
-        mItems = new ArrayList<String>();
-        mItems.add(SWIPE_LEFT);
-        mItems.add(SWIPE_LEFT);
-        mItems.add(SWIPE_LEFT);
+        mRowCount = 3;
     }
 
     @Override
@@ -39,17 +35,16 @@ public class SwipingAdapter extends RecyclerView.Adapter<SwipingAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.bind(mItems.get(position));
     }
 
     public void removeItem(int position) {
-        mItems.remove(position);
+        mRowCount -= 1;
         notifyItemRemoved(position);
     }
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return mRowCount;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -61,11 +56,6 @@ public class SwipingAdapter extends RecyclerView.Adapter<SwipingAdapter.MyViewHo
             super(itemView);
         }
 
-        public void bind(String text) {
-            TextView textView = (TextView) itemView.findViewById(R.id.name);
-            textView.setText(text);
-        }
-
         public RelativeLayout getViewBackground() {
             if(mViewBackground == null) {
                 mViewBackground = (RelativeLayout) itemView.findViewById(R.id.view_background);
@@ -75,7 +65,7 @@ public class SwipingAdapter extends RecyclerView.Adapter<SwipingAdapter.MyViewHo
 
         public RelativeLayout getViewForeground() {
             if(mViewForeground == null) {
-                mViewForeground = (RelativeLayout) itemView.findViewById(R.id.view_background);
+                mViewForeground = (RelativeLayout) itemView.findViewById(R.id.swipe_left);
             }
             return mViewForeground;
         }
