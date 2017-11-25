@@ -90,6 +90,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.swipe_challenge) {
             setFragment(new SwipingFragment());
 
+        } else if (id == R.id.alert_dialog) {
+            setFragment(new AlertDialogChallengeFragment());
+
         } else {
             throw new IllegalArgumentException("case not implemented for " + String.valueOf(id));
         }
