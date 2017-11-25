@@ -8,7 +8,8 @@
     <TextView
         android:id="@+id/txtActual"
         android:paddingTop="@dimen/thirty_two_dp"
-        android:text="aaaa"
+        android:visibility="visible"
+        android:text="Result"
         android:textAlignment="center"
         android:textSize="@dimen/result_list_item"
         android:layout_width="0dp"

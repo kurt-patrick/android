@@ -19,4 +19,8 @@ public class RandomHelper {
         return mRandom.nextInt(max + 1);
     }
 
+    public static Boolean getRandomBoolean() {
+        return between(1, 2) == 1;
+    }
+
 }
