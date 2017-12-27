@@ -93,6 +93,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.alert_dialog) {
             setFragment(new AlertDialogChallengeFragment());
 
+        } else if (id == R.id.controls) {
+            setFragment(new ControlPractiseFragment());
+
         } else {
             throw new IllegalArgumentException("case not implemented for " + String.valueOf(id));
         }
