@@ -1,0 +1,131 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.kpe.automationchallenge.ControlPractiseFragment">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="2"
+        android:filterTouchesWhenObscured="false"
+        android:rowCount="6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnToast"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_marginTop="10dp"
+            android:layout_rowWeight="1"
+            android:text="Show Toast" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="Validate"
+            android:textSize="@dimen/twenty_sp" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_marginTop="10dp"
+            android:layout_rowWeight="1"
+            android:text="Toggle (Off)" />
+
+        <TextView
+            android:id="@+id/txtToggle"
+            android:layout_marginTop="10dp"
+            android:text="Toggle (On/Off)"
+            android:textSize="@dimen/twenty_sp" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_marginTop="10dp"
+            android:layout_rowWeight="1"
+            android:text="CheckBox" />
+
+        <TextView
+            android:id="@+id/txtCheck"
+            android:layout_marginTop="10dp"
+            android:text="Check (On/Off)"
+            android:textSize="@dimen/twenty_sp" />
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_marginTop="10dp"
+            android:layout_rowWeight="1"
+            android:text="Switch" />
+
+        <TextView
+            android:id="@+id/txtSwitch"
+            android:layout_marginTop="10dp"
+            android:text="Switch (On|Off)"
+            android:textSize="@dimen/twenty_sp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_marginTop="10dp"
+            android:layout_rowWeight="1" />
+
+        <TextView
+            android:id="@+id/txtSpinner"
+            android:layout_marginTop="10dp"
+            android:text="Select (One|Two|...)"
+            android:textSize="@dimen/twenty_sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:layout_marginTop="10dp"
+            android:layout_rowWeight="1">
+
+            <RadioButton
+                android:id="@+id/radioOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="10dp"
+                android:layout_rowWeight="1"
+                android:text="One" />
+
+            <RadioButton
+                android:id="@+id/radioTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="10dp"
+                android:layout_rowWeight="1"
+                android:text="Two" />
+
+            <RadioButton
+                android:id="@+id/radioThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="10dp"
+                android:layout_rowWeight="1"
+                android:text="Three" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtRadioGroup"
+            android:layout_marginTop="10dp"
+            android:text="Toggle (One|Two|Three)"
+            android:textSize="@dimen/twenty_sp" />
+
+    </GridLayout>
+
+</android.support.constraint.ConstraintLayout>
