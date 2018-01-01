@@ -21,7 +21,7 @@
     <string name="swipe_to_delete">swipe left to delete</string>
 
     <string-array name="spinner_values">
-        <item>Select</item>
+        <item>Select an item</item>
         <item>One</item>
         <item>Two</item>
         <item>Three</item>

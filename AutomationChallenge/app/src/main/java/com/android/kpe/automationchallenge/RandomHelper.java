@@ -23,4 +23,13 @@ public class RandomHelper {
         return between(1, 2) == 1;
     }
 
+    public static String getRandomString(String ...args) {
+        if(args == null || args.length == 0) {
+            throw new NullPointerException();
+        }
+        int max = args.length - 1;
+        int index = between(0, max);
+        return args[index];
+    }
+
 }
