@@ -307,6 +307,7 @@ public class ControlPractiseFragment extends Fragment implements AdapterView.OnI
                     String message = getSuccessStateForAlltextViews() ? getString(R.string.success) : getString(R.string.fail);
                     Toast toast = Toast.makeText(getView().getContext(), message, Toast.LENGTH_SHORT);
                     toast.show();
+                    ((TextView) getView().findViewById(R.id.txtValidate)).setText("State: " + message);
                 }
             });
         }

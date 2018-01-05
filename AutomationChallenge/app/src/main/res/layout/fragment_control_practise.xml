@@ -7,7 +7,7 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:columnCount="2"
         android:filterTouchesWhenObscured="false"
         android:rowCount="6"
@@ -16,23 +16,10 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/btnToast"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:layout_marginTop="10dp"
-            android:layout_rowWeight="1"
-            android:text="Show Toast" />
-
-        <TextView
-            android:layout_marginTop="10dp"
-            android:text="Validate"
-            android:textSize="@dimen/twenty_sp" />
-
         <ToggleButton
             android:id="@+id/toggleButton2"
             android:layout_columnWeight="1"
-            android:layout_gravity="fill"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_rowWeight="1"
             android:text="Toggle (Off)" />
@@ -46,7 +33,7 @@
         <CheckBox
             android:id="@+id/checkBox2"
             android:layout_columnWeight="1"
-            android:layout_gravity="fill"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_rowWeight="1"
             android:text="CheckBox" />
@@ -60,7 +47,7 @@
         <Switch
             android:id="@+id/switch2"
             android:layout_columnWeight="1"
-            android:layout_gravity="fill"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_rowWeight="1"
             android:text="Switch" />
@@ -74,7 +61,7 @@
         <Spinner
             android:id="@+id/spinner"
             android:layout_columnWeight="1"
-            android:layout_gravity="fill"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_rowWeight="1" />
 
@@ -87,7 +74,7 @@
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_columnWeight="1"
-            android:layout_gravity="fill"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_rowWeight="1">
 
@@ -124,6 +111,20 @@
             android:id="@+id/txtRadioGroup"
             android:layout_marginTop="10dp"
             android:text="Toggle (One|Two|Three)"
+            android:textSize="@dimen/twenty_sp" />
+
+        <Button
+            android:id="@+id/btnToast"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_rowWeight="1"
+            android:text="Show Toast" />
+
+        <TextView
+            android:id="@+id/txtValidate"
+            android:layout_marginTop="10dp"
+            android:text="Validate"
             android:textSize="@dimen/twenty_sp" />
 
     </GridLayout>
